@@ -1,24 +1,13 @@
-version: '3.1'
+version: '2'
 services:
 
-   # Prod server
-   tomcat:
-      image: tomcat:8.5-jre8-alpine
-      container_name: prod
-      hostname: prod
-      ports:
-         - '5555:8080'
-      networks:
-         st:
-            ipv4_address: 172.20.128.16
-    
     # Jenkins master
     jenkins:
        image: jenkins-master
        container_name: jenkins
        ports:
-           - '8080:8080'
-           - '50000:50000'
+           - "8080:8080"
+           - "50000:50000"
        networks:
           st:
              ipv4_address: 172.20.128.17
@@ -37,6 +26,16 @@ services:
        networks:
           st:
              ipv4_address: 172.20.128.18
+    
+    # Prod server
+    tomcat:
+       image: tomcat:8.5-jre8-alpine
+       container_name: prod
+       ports:
+           - "5555:8080"
+       networks:
+          st:
+             ipv4_address: 172.20.128.16
 
 networks:
   st:
