@@ -2,10 +2,24 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Clone project') {
+            steps {
+                sh '''
+                   cd /tmp
+                   rm -r sample-web-service
+                   git clone https://github.com/fiskra/sample-web-service.git
+                   '''
+            }
+        }
+
         stage('Build') {
             steps {
                 echo "Compiling..."
-                sh 'mvn -B -DskipTests clean package'
+                sh '''
+                   cd /tmp/sample-web-service
+                   mvn -B -DskipTests clean package
+                   '''
             }
         }
     }
