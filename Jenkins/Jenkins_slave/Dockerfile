@@ -6,7 +6,7 @@ RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 581
 RUN echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list
 RUN apt-get update && apt-get install -y docker-ce --allow-unauthenticated
  
-RUN apt-get update && apt-get install -y openjdk-8-jre curl python python-pip git
+RUN apt-get update && apt-get install -y openjdk-8-jdk curl python python-pip git
 RUN easy_install jenkins-webapi
 
 # Install Maven
@@ -19,7 +19,10 @@ RUN apt-get install -y ansible
 # Get docker-compose in the agent container
 RUN curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 RUN mkdir -p /home/jenkins
+RUN mkdir -p /home/Ansible
 RUN mkdir -p /var/lib/jenkins
+
+RUN pip install docker-py
 
 ADD slave.py /var/lib/jenkins/slave.py
 
