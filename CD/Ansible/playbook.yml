@@ -15,3 +15,6 @@
         ports:
           - "{{ src_port }}:{{ dest_port }}"
         state: started
+
+    - name: copy .war file from slave to prod server
+      command: docker cp /tmp/sample-web-service/target/*.war prod:/usr/local/tomcat/webapps
