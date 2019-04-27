@@ -18,9 +18,11 @@ RUN apt-get install -y ansible
 
 # Get docker-compose in the agent container
 RUN curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
-RUN mkdir -p /home/jenkins
-RUN mkdir -p /home/Ansible
-RUN mkdir -p /var/lib/jenkins
+
+RUN mkdir -p /home/jenkins \
+  && mkdir -p /home/Ansible \
+  && mkdir -p /var/lib/jenkins \
+  && mkdir -p /tmp/sample-web-service
 
 RUN pip install docker-py
 
