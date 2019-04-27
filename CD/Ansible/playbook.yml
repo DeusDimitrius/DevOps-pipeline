@@ -1,4 +1,5 @@
 ---
+
 - name: prod server start
   hosts: localhost
   connection: local
@@ -18,3 +19,6 @@
 
     - name: copy .war file from slave to prod server
       command: docker cp /tmp/sample-web-service/target/sample.web.service-0.0.1-SNAPSHOT.war prod:/usr/local/tomcat/webapps
+
+    - name: tomcat service restart
+      command: docker restart prod
