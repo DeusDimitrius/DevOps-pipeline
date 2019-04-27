@@ -1,0 +1,5 @@
+[prod_servers]
+localhost ansible_connection=local
+
+[prod_ALL:children]
+prod_servers

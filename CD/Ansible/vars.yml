@@ -1,0 +1,4 @@
+image: tomcat:8.5-jre8-alpine
+name: test
+src_port: 5001
+dest_port: 8080

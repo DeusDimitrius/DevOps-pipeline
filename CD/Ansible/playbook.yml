@@ -1,0 +1,17 @@
+---
+- name: prod server start
+  hosts: localhost
+  connection: local
+  remote_user: root
+
+  tasks:
+    - name: include variables
+      include_vars: vars.yml
+
+    - name: Create Container
+      docker_container:
+        name: "{{ name }}"
+        image: "{{ image }}"
+        ports:
+          - "{{ src_port }}:{{ dest_port }}"
+        state: started
