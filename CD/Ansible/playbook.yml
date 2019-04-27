@@ -17,4 +17,4 @@
         state: started
 
     - name: copy .war file from slave to prod server
-      command: docker cp /tmp/sample-web-service/target/*.war prod:/usr/local/tomcat/webapps
+      command: docker cp /tmp/sample-web-service/target/sample.web.service-0.0.1-SNAPSHOT.war prod:/usr/local/tomcat/webapps
