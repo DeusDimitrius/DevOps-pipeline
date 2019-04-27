@@ -26,16 +26,6 @@ services:
        networks:
           st:
              ipv4_address: 172.20.128.18
-    
-    # Prod server
-    tomcat:
-       image: tomcat:8.5-jre8-alpine
-       container_name: prod
-       ports:
-           - "5555:8080"
-       networks:
-          st:
-             ipv4_address: 172.20.128.16
 
 networks:
   st:
