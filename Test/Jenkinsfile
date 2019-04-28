@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+   agent any
 
    stages {
 
@@ -11,4 +11,11 @@ pipeline {
      }
     }
    }
+   
+   post {
+    failure { 
+     mail bcc: '', body: 'ERROR CD: Project name -> sample.web.service', cc: '', from: '', replyTo: '', subject: "ERROR CD: Project name -> sample.web.service", to: 'fferide.celik@gmail.com, admin.admin@gmail.com';
+    }
+   }  
+
 }
