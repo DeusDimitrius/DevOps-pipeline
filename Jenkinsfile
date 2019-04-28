@@ -26,7 +26,10 @@ pipeline {
     stage ('Run') {
         steps {
             sleep 360
-            sh "ansible-playbook -i hosts playbook.yml"
+            sh '''
+               cd /home/Ansible
+               ansible-playbook playbook.yml
+               '''
         }
     }
 
@@ -34,8 +37,15 @@ pipeline {
         steps {
             sleep 240
 
-            httpRequest responseHandle: 'NONE', timeout: 2500, url: 'http://127.0.0.1:5001/sample.web.service-0.0.1-SNAPSHOT/users', validResponseCodes: '200', consoleLogResponseBody: true
+            httpRequest responseHandle: 'NONE', timeout: 2500, url: 'http://172.17.0.2:8080/sample.web.service-0.0.1-SNAPSHOT/users', validResponseCodes: '200', consoleLogResponseBody: true
         }
     }
    }
+
+   post {
+    failure {
+     mail bcc: '', body: 'ERROR CD: Project name -> sample.web.service', cc: '', from: '', replyTo: '', subject: "ERROR CD: Project name -> sample.web.service", to: 'fferide.celik@gmail.com, admin.admin@gmail.com';
+    }
+   }
+
 }
