@@ -15,6 +15,9 @@
         image: "{{ image }}"
         ports:
           - "{{ src_port }}:{{ dest_port }}"
+        networks:
+          - name: devops-pipeline_st
+            ipv4_address: 172.20.128.13
         state: started
 
     - name: copy .war file from slave to prod server
