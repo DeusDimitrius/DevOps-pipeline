@@ -37,7 +37,7 @@ pipeline {
         steps {
             sleep 240
 
-            httpRequest responseHandle: 'NONE', timeout: 2500, url: 'http://172.17.0.2:8080/sample.web.service-0.0.1-SNAPSHOT/users', validResponseCodes: '200', consoleLogResponseBody: true
+            httpRequest responseHandle: 'NONE', timeout: 2500, url: 'http://172.20.128.13:8080/sample.web.service-0.0.1-SNAPSHOT/users', validResponseCodes: '200', consoleLogResponseBody: true
         }
     }
    }
